@@ -88,11 +88,6 @@
 
 .impress-enabled .step.active { opacity: 1 }
 
-/* fade out inactive slides */
-.step:not(.active) {
-    opacity: 0.3;
-}
-
 
 
 
