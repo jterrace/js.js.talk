@@ -11,6 +11,7 @@
   
   <link href="css/bootstrap.min.css" rel="stylesheet" />
   <link href="css/js.js.talk.css" rel="stylesheet" />
+  <link href="css/prettify.css" type="text/css" rel="stylesheet" />
 </head>
 
 <body class="impress-not-supported">
@@ -31,21 +32,132 @@
       <p><em>Princeton University</em></p>
     </div>
   </div>
-  
+
   <div class="step slide" data-x="1000">
-    <h1>Test Slide 2</h1>
-    <ul>
-      <li>This is a bullet</li>
-      <li>Really awesome point here</li>
-      <li>Some longer block of text would take up more space and this is supposed to test out how it would look although I usually avoid really long walls of text.</li>
-      <li>Short text after the long text</li>
-    </ul>
+    <h1>Microbenchmark</h1>
+    <table style="margin-top: 50px; width: 600px;" class="table table-striped">
+      <tbody>
+      <tr>
+        <th>Operation</th>
+        <th class="align-right">Mean Execution Time (ms)</th>
+      </tr>
+      <tr>
+        <td>libjs.min.js load</td>
+        <td class="align-right">84.9</td>
+      </tr>
+      <tr>
+        <td>NewRuntime</td>
+        <td class="align-right">25.2</td>
+      </tr>
+      <tr>
+        <td>NewContext</td>
+        <td class="align-right">35.8</td>
+      </tr>
+      <tr>
+        <td>GlobalClassInit</td>
+        <td class="align-right">15.5</td>
+      </tr>
+      <tr>
+        <td>StandardClassesInit</td>
+        <td class="align-right">60.1</td>
+      </tr>
+      <tr>
+        <td>Execute 1+1</td>
+        <td class="align-right">70.6</td>
+      </tr>
+      <tr>
+        <td>DestroyContext</td>
+        <td class="align-right">33.3</td>
+      </tr>
+      <tr>
+        <td>DestroyRuntime</td>
+        <td class="align-right">1.8</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="step slide" data-x="2000">
+    <h1>Sunspider Benchmark</h1>
+    <img class="solo-image" src="img/combined_times.png" />
+  </div>
+
+  <div class="step slide" data-x="3000">
+    <h1>Fibonacci C++</h1>
+<pre class="prettyprint">
+int fibonacci(unsigned int n) {
+  if (n==0 || n==1) {
+    return n;
+  }
+  
+  unsigned int prev2 = 0, prev1 = 1, fib = 1, i;
+  
+  for (i=2; i<=n; i++) {
+    fib = prev1 + prev2;
+    prev2 = prev1;
+    prev1 = fib;
+  }
+  
+  return fib;
+}
+</pre>
+  </div>
+  
+  <div class="step slide" data-x="4000">
+    <h1>Fibonacci LLVM</h1>
+<pre class="prettyprint">
+define i32 @fibonacci(i32 %n) nounwind readnone {
+  %1 = icmp ult i32 %n, 2
+  br i1 %1, label %.loopexit, label %.lr.ph
+ 
+.lr.ph:
+  %i.04 = phi i32 [ %3, %.lr.ph ], [ 2, %0 ]
+  %prev2.03 = phi i32 [ %fib.02, %.lr.ph ], [ 0, %0 ]
+  %fib.02 = phi i32 [ %2, %.lr.ph ], [ 1, %0 ]
+  %2 = add i32 %prev2.03, %fib.02
+  %3 = add i32 %i.04, 1
+  %4 = icmp ugt i32 %3, %n
+  br i1 %4, label %.loopexit, label %.lr.ph
+ 
+.loopexit:
+  %.0 = phi i32 [ %n, %0 ], [ %2, %.lr.ph ]
+  ret i32 %.0
+}
+</pre>
+  </div>
+  
+  <div class="step slide" data-x="5000">
+    <h1>Fibonacci JavaScript</h1>
+<pre class="prettyprint">
+Module._fibonacci = (function (a) {
+    var b = 2 > a;
+    a: do {
+        if (b) {
+            var d = a
+        } else {
+            for (var c = 1, e = 0, f = 2;;) {
+                var k = e + c,
+                    f = f + 1;
+                if (f > a) {
+                    d = k;
+                    break a
+                }
+                e = c;
+                c = k
+            }
+        }
+    } while (0);
+    return d
+});
+</pre>
   </div>
 
 </div>
 
 <script src="js/impress.js"></script>
 <script>impress().init();</script>
+<script type="text/javascript" src="js/prettify.js"></script>
+<script>prettyPrint();</script>
 
 </body>
 </html>

@@ -33,11 +33,19 @@
 
 
 
+/* generic utility classes */
+.align-right, .table td.align-right, .table th.align-right {
+	text-align: right;
+}
+
+
+
+
 
 /* Generic slide/step styles */
 
 .slide {
-    display: block;
+    display: box;
 
     width: 900px;
     height: 700px;
@@ -67,6 +75,18 @@
     -o-transition:      opacity 1s;
     transition:         opacity 1s;
 }
+
+.impress-enabled .step {
+    opacity: 0.3;
+
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
+}
+
+.impress-enabled .step.active { opacity: 1 }
 
 /* fade out inactive slides */
 .step:not(.active) {
@@ -126,4 +146,29 @@
     font-size: 40px;
     line-height: 46px;
     margin-bottom: 30px;
+}
+
+.slide table {
+	margin-top: 20px;
+	font-size: 30px;
+    margin-left:auto; 
+    margin-right:auto;
+    border-bottom: 2px solid #666666;
+}
+.slide table td, .slide table th {
+	line-height: 36px;
+}
+.slide table th {
+	border-bottom: 2px solid #666666;
+	border-top: 2px solid #666666;
+}
+
+.slide .solo-image {
+    margin-top: 40px;
+}
+
+.slide pre {
+	margin-top: 40px;
+	font-size: 25px;
+	line-height: 29px;
 }
