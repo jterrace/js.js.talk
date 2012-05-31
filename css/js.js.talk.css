@@ -38,7 +38,16 @@
 	text-align: right;
 }
 
+.code {
+	font-family: monospace;
+}
 
+
+
+/* body */
+body {
+    background: #dddddd;
+}
 
 
 
@@ -51,6 +60,7 @@
     height: 700px;
 
     padding: 10px 40px 10px 40px;
+    background: #ffffff;
 
     border-radius: 10px;
 
@@ -84,6 +94,9 @@
     -ms-transition:     opacity 1s;
     -o-transition:      opacity 1s;
     transition:         opacity 1s;
+}
+.impress-enabled .step.overlapped {
+	opacity: 0;
 }
 
 .impress-enabled .step.active { opacity: 1 }
@@ -134,13 +147,34 @@
 
 /* Generic slide formatting */
 
-.slide ul {
+.slide ul, .slide ol {
 	margin-top: 20px;
 }
-.slide ul li {
+.slide ol {
+	list-style-position: inside;
+}
+.slide ul li, .slide ol li {
     font-size: 40px;
     line-height: 46px;
     margin-bottom: 30px;
+}
+.slide ul li ul, .slide ol li ol, .slide ol li ul {
+	margin-top: 10px;
+}
+.slide ol li ol {
+	list-style-position: inside;
+}
+.slide ol li ul {
+    list-style-position: inside;
+}
+.slide ul li ul li, .slide ol li ol li, .slide ol li ul li {
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 10px;
+}
+.slide ol li ul li {
+	padding-left: 1em;
+    text-indent: -1em;
 }
 
 .slide table {
@@ -166,4 +200,40 @@
 	margin-top: 40px;
 	font-size: 25px;
 	line-height: 29px;
+}
+
+
+
+
+/* Specific slides */
+div.fake-web {
+	margin-top: 20px;
+	height: 200px;
+    padding: 5px 5px 5px 5px;
+
+    border-radius: 5px;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    border: 1px solid rgba(0, 0, 0, .3);
+}
+div.fake-web input {
+	width: 690px;
+	font-size: 20px;
+}
+div.fake-web p {
+	font-size: 20px;
+}
+div.third-includes {
+	margin-top: 40px;
+}
+div.third-includes h3 {
+	font-size: 36px;
+}
+div.third-includes li {
+	font-family: monospace;
+	font-size: 26px;
+	margin-bottom: 0px;
+}
+div.third-includes strong {
+	background-color: #FFFFA6;
 }

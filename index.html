@@ -34,6 +34,187 @@
   </div>
 
   <div class="step slide" data-x="1000">
+    <h1>Third-party Scripts</h1>
+    <div class="fake-web">
+      <div class="btn-group">
+        <a class="btn" href="#"><i class="icon-arrow-left"></i></a>
+        <a class="btn" href="#"><i class="icon-arrow-right"></i></a>
+        <a class="btn" href="#"><i class="icon-repeat"></i></a>
+        <input type="text" value="http://example.com/"/>
+      </div>
+      <p>Hello, World!</p>
+    </div>
+  </div>
+  <div class="step slide overlapped" data-x="1000">
+    <h1>Third-party Scripts</h1>
+    <div class="fake-web">
+      <div class="btn-group">
+        <a class="btn" href="#"><i class="icon-arrow-left"></i></a>
+        <a class="btn" href="#"><i class="icon-arrow-right"></i></a>
+        <a class="btn" href="#"><i class="icon-repeat"></i></a>
+        <input type="text" value="http://example.com/"/>
+      </div>
+      <p>Hello, World!</p>
+      <img src="img/fblike.png"/>
+    </div>
+    <div class="third-includes">
+      <h3>Scripts Included</h3>
+      <ul>
+        <li>https://connect.facebook.net/en_US/all.js</li>
+      </ul>
+    </div>
+  </div>
+  <div class="step slide overlapped" data-x="1000">
+    <h1>Third-party Scripts</h1>
+    <div class="fake-web">
+      <div class="btn-group">
+        <a class="btn" href="#"><i class="icon-arrow-left"></i></a>
+        <a class="btn" href="#"><i class="icon-arrow-right"></i></a>
+        <a class="btn" href="#"><i class="icon-repeat"></i></a>
+        <input type="text" value="http://example.com/"/>
+      </div>
+      <p>Hello, World!</p>
+      <img src="img/fblike.png"/>
+      <img src="img/plusone.png"/>
+    </div>
+    <div class="third-includes">
+      <h3>Scripts Included</h3>
+      <ul>
+        <li>https://connect.facebook.net/en_US/all.js</li>
+        <li>https://apis.google.com/js/plusone.js</li>
+      </ul>
+    </div>
+  </div>
+  <div class="step slide overlapped" data-x="1000">
+    <h1>Third-party Scripts</h1>
+    <div class="fake-web">
+      <div class="btn-group">
+        <a class="btn" href="#"><i class="icon-arrow-left"></i></a>
+        <a class="btn" href="#"><i class="icon-arrow-right"></i></a>
+        <a class="btn" href="#"><i class="icon-repeat"></i></a>
+        <input type="text" value="http://example.com/"/>
+      </div>
+      <p>Hello, World!</p>
+      <img src="img/fblike.png"/>
+      <img src="img/plusone.png"/>
+      <img src="img/tweet.png"/>
+    </div>
+    <div class="third-includes">
+      <h3>Scripts Included</h3>
+      <ul>
+        <li>https://connect.facebook.net/en_US/all.js</li>
+        <li>https://apis.google.com/js/plusone.js</li>
+        <li>https://platform.twitter.com/widgets.js</li>
+      </ul>
+    </div>
+  </div>
+  <div class="step slide overlapped" data-x="1000">
+    <h1>Third-party Scripts</h1>
+    <div class="fake-web">
+      <div class="btn-group">
+        <a class="btn" href="#"><i class="icon-arrow-left"></i></a>
+        <a class="btn" href="#"><i class="icon-arrow-right"></i></a>
+        <a class="btn" href="#"><i class="icon-repeat"></i></a>
+        <input type="text" value="http://example.com/"/>
+      </div>
+      <p>Hello, World!</p>
+      <img src="img/fblike.png"/>
+      <img src="img/plusone.png"/>
+      <img src="img/tweet.png"/><br/>
+      <img width="200" src="img/jquery_logo.png"/>
+    </div>
+    <div class="third-includes">
+      <h3>Scripts Included</h3>
+      <ul>
+        <li>https://connect.facebook.net/en_US/all.js</li>
+        <li>https://apis.google.com/js/plusone.js</li>
+        <li>https://platform.twitter.com/widgets.js</li>
+        <li>http://code.jquery.com/jquery-1.7.2.min.js</li>
+      </ul>
+    </div>
+  </div>
+  <div class="step slide overlapped" data-x="1000">
+    <h1>Third-party Scripts</h1>
+    <div class="fake-web">
+      <div class="btn-group">
+        <a class="btn" href="#"><i class="icon-arrow-left"></i></a>
+        <a class="btn" href="#"><i class="icon-arrow-right"></i></a>
+        <a class="btn" href="#"><i class="icon-repeat"></i></a>
+        <input type="text" value="http://example.com/"/>
+      </div>
+      <p>Hello, World!</p>
+      <img src="img/fblike.png"/>
+      <img src="img/plusone.png"/>
+      <img src="img/tweet.png"/><br/>
+      <img width="200" src="img/jquery_logo.png"/>
+    </div>
+    <div class="third-includes">
+      <h3>Scripts Included</h3>
+      <ul>
+        <li>https://connect.<strong>facebook.net</strong>/en_US/all.js</li>
+        <li>https://apis.<strong>google.com</strong>/js/plusone.js</li>
+        <li>https://platform.<strong>twitter.com</strong>/widgets.js</li>
+        <li>http://code.<strong>jquery.com</strong>/jquery-1.7.2.min.js</li>
+      </ul>
+    </div>
+    <ul><li>example.com now trusts these domains!</li></ul>
+  </div>
+
+  <div class="step slide" data-x="2000">
+    <h1>Existing Solutions</h1>
+    <ul>
+      <li>iframes
+        <ul>
+          <li>open to DOS, memory exhaustion, page redirection</li>
+        </ul>
+      </li>
+      <li>Static analysis / Runtime checks
+        <ul>
+          <li>FBJS, Gatekeeper, ADsafety, BrowserShield, WebSandbox, Caja</li>
+          <li>Reduced subset of JS, requires porting</li>
+        </ul>
+      </li>
+      <li>WebWorker sandbox (Treehouse)
+        <ul>
+          <li>requires message-passing</li>
+        </ul>
+      </li>
+      <li>Browser modifications
+        <ul>
+          <li>BEEP, Conscript, Atlantis</li>
+          <li>Requires modifying the browser, not portable</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="step slide" data-x="3000">
+    <h1>Goals</h1>
+    <ol>
+      <li>Fine-grained access control</li>
+      <li>Full JavaScript support
+        <ul><li>Including <span class="code">eval</span> and <span class="code">with</span>.</li></ul>
+      </li>
+      <li>Browser Compatibility
+        <ul><li>All major browsers without plugins or modifications</li></ul>
+      </li>
+      <li>Resilient to attacks
+        <ul><li>Spin loops, memory exhaustion, page redirection, DOM modifications</li></ul>
+      </li>
+    </ol>
+  </div>
+  
+  <div class="step slide" data-x="4000">
+    <h1>js.js</h1>
+    <ul>
+      <li>A JavaScript interpreter that runs on JavaScript</li>
+      <li>Executes scripts in a secure sandbox</li>
+      <li>Allows site-operators fine-grained control over sandbox</li>
+      <li>Implemented by compiling SpiderMonkey to JavaScript using Emscripten</li>
+    </ul>
+  </div>
+
+  <div class="step slide" data-x="10000">
     <h1>Microbenchmark</h1>
     <table style="margin-top: 50px; width: 600px;" class="table table-striped">
       <tbody>
@@ -77,12 +258,12 @@
     </table>
   </div>
 
-  <div class="step slide" data-x="2000">
+  <div class="step slide" data-x="11000">
     <h1>Sunspider Benchmark</h1>
     <img class="solo-image" src="img/combined_times.png" />
   </div>
 
-  <div class="step slide" data-x="3000">
+  <div class="step slide" data-x="12000">
     <h1>Fibonacci C++</h1>
 <pre class="prettyprint">
 int fibonacci(unsigned int n) {
@@ -103,7 +284,7 @@ int fibonacci(unsigned int n) {
 </pre>
   </div>
   
-  <div class="step slide" data-x="4000">
+  <div class="step slide" data-x="13000">
     <h1>Fibonacci LLVM</h1>
 <pre class="prettyprint">
 define i32 @fibonacci(i32 %n) nounwind readnone {
@@ -126,28 +307,28 @@ define i32 @fibonacci(i32 %n) nounwind readnone {
 </pre>
   </div>
   
-  <div class="step slide" data-x="5000">
+  <div class="step slide" data-x="14000">
     <h1>Fibonacci JavaScript</h1>
 <pre class="prettyprint">
 Module._fibonacci = (function (a) {
-    var b = 2 > a;
-    a: do {
-        if (b) {
-            var d = a
-        } else {
-            for (var c = 1, e = 0, f = 2;;) {
-                var k = e + c,
-                    f = f + 1;
-                if (f > a) {
-                    d = k;
-                    break a
-                }
-                e = c;
-                c = k
-            }
+  var b = 2 > a;
+  a: do {
+    if (b) {
+      var d = a
+    } else {
+      for (var c = 1, e = 0, f = 2;;) {
+        var k = e + c,
+          f = f + 1;
+        if (f > a) {
+          d = k;
+          break a
         }
-    } while (0);
-    return d
+        e = c;
+        c = k
+      }
+    }
+  } while (0);
+  return d
 });
 </pre>
   </div>
