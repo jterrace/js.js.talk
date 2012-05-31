@@ -214,7 +214,132 @@
     </ul>
   </div>
 
+  <div class="step slide" data-x="5000">
+    <h1>Emscripten</h1>
+    <ul>
+      <li>Emscripten is an LLVM-to-JavaScript compiler.</li>
+      <li>C --> Clang --> LLVM</li>
+      <li>LLVM --> Emscripten --> JavaScript</li>
+      <li>has its own implementation of libc</li>
+      <li><strong>not</strong> an emulator</li>
+      <li>emscripten.org</li>
+    </ul>
+  </div>
+
+  <div class="step slide" data-x="6000">
+    <h1>Fibonacci C++</h1>
+<pre class="prettyprint">
+int fibonacci(unsigned int n) {
+  if (n==0 || n==1) {
+    return n;
+  }
+  
+  unsigned int prev2 = 0, prev1 = 1, fib = 1, i;
+  
+  for (i=2; i<=n; i++) {
+    fib = prev1 + prev2;
+    prev2 = prev1;
+    prev1 = fib;
+  }
+  
+  return fib;
+}
+</pre>
+  </div>
+  
+  <div class="step slide" data-x="7000">
+    <h1>Fibonacci LLVM</h1>
+<pre class="prettyprint">
+define i32 @fibonacci(i32 %n) nounwind readnone {
+  %1 = icmp ult i32 %n, 2
+  br i1 %1, label %.loopexit, label %.lr.ph
+ 
+.lr.ph:
+  %i.04 = phi i32 [ %3, %.lr.ph ], [ 2, %0 ]
+  %prev2.03 = phi i32 [ %fib.02, %.lr.ph ], [ 0, %0 ]
+  %fib.02 = phi i32 [ %2, %.lr.ph ], [ 1, %0 ]
+  %2 = add i32 %prev2.03, %fib.02
+  %3 = add i32 %i.04, 1
+  %4 = icmp ugt i32 %3, %n
+  br i1 %4, label %.loopexit, label %.lr.ph
+ 
+.loopexit:
+  %.0 = phi i32 [ %n, %0 ], [ %2, %.lr.ph ]
+  ret i32 %.0
+}
+</pre>
+  </div>
+  
+  <div class="step slide" data-x="8000">
+    <h1>Fibonacci JavaScript</h1>
+<pre class="prettyprint">
+Module._fibonacci = (function (a) {
+  var b = 2 > a;
+  a: do {
+    if (b) {
+      var d = a
+    } else {
+      for (var c = 1, e = 0, f = 2;;) {
+        var k = e + c,
+          f = f + 1;
+        if (f > a) {
+          d = k;
+          break a
+        }
+        e = c;
+        c = k
+      }
+    }
+  } while (0);
+  return d
+});
+</pre>
+  </div>
+
+  <div class="step slide" data-x="9000">
+    <h1>js.js Example - 1+1</h1>
+    <pre class="prettyprint">
+var jsObjs = JSJS.Init();
+
+var compiledObj = JSJS.CompileScript(
+                     jsObjs.cx, jsObjs.glob, "1 + 1");
+
+var rval = JSJS.ExecuteScript(
+                 jsObjs.cx, jsObjs.glob, compiledObj);
+
+var d = JSJS.ValueToNumber(jsObjs.cx, rval);
+console.log(d);
+</pre>
+    <div class="demo-container">
+      <button onclick="toggleIframe(this);">Run Demo</button>
+      <div class="demo-contents" data-src="1+1.html"></div>
+    </div>
+  </div>
+
   <div class="step slide" data-x="10000">
+    <h1>js.js Example - communication</h1>
+    <pre class="prettyprint">
+function nativeAdd(d1, d2) {
+  return d1 + d2;
+}
+var wrappedNativeFunc = JSJS.wrapFunction({
+  func: nativeAdd,
+  args: [JSJS.Types['double'], JSJS.Types['double']],
+  returns: JSJS.Types['double']});
+
+JSJS.DefineFunction(jsObjs.cx, jsObjs.glob,
+            "nativeAdd", wrappedNativeFunc, 2, 0);
+
+var rval = JSJS.EvaluateScript(jsObjs.cx, jsObjs.glob,
+                   "nativeAdd(17, 2.4);");
+</pre>
+    <div class="demo-container">
+      <button onclick="toggleIframe(this);">Run Demo</button>
+      <div class="demo-contents" data-src="communication.html"></div>
+    </div>
+  </div>
+
+  <div class="step slide" data-x="15000">
     <h1>Microbenchmark</h1>
     <table style="margin-top: 50px; width: 600px;" class="table table-striped">
       <tbody>
@@ -258,79 +383,9 @@
     </table>
   </div>
 
-  <div class="step slide" data-x="11000">
+  <div class="step slide" data-x="16000">
     <h1>Sunspider Benchmark</h1>
     <img class="solo-image" src="img/combined_times.png" />
-  </div>
-
-  <div class="step slide" data-x="12000">
-    <h1>Fibonacci C++</h1>
-<pre class="prettyprint">
-int fibonacci(unsigned int n) {
-  if (n==0 || n==1) {
-    return n;
-  }
-  
-  unsigned int prev2 = 0, prev1 = 1, fib = 1, i;
-  
-  for (i=2; i<=n; i++) {
-    fib = prev1 + prev2;
-    prev2 = prev1;
-    prev1 = fib;
-  }
-  
-  return fib;
-}
-</pre>
-  </div>
-  
-  <div class="step slide" data-x="13000">
-    <h1>Fibonacci LLVM</h1>
-<pre class="prettyprint">
-define i32 @fibonacci(i32 %n) nounwind readnone {
-  %1 = icmp ult i32 %n, 2
-  br i1 %1, label %.loopexit, label %.lr.ph
- 
-.lr.ph:
-  %i.04 = phi i32 [ %3, %.lr.ph ], [ 2, %0 ]
-  %prev2.03 = phi i32 [ %fib.02, %.lr.ph ], [ 0, %0 ]
-  %fib.02 = phi i32 [ %2, %.lr.ph ], [ 1, %0 ]
-  %2 = add i32 %prev2.03, %fib.02
-  %3 = add i32 %i.04, 1
-  %4 = icmp ugt i32 %3, %n
-  br i1 %4, label %.loopexit, label %.lr.ph
- 
-.loopexit:
-  %.0 = phi i32 [ %n, %0 ], [ %2, %.lr.ph ]
-  ret i32 %.0
-}
-</pre>
-  </div>
-  
-  <div class="step slide" data-x="14000">
-    <h1>Fibonacci JavaScript</h1>
-<pre class="prettyprint">
-Module._fibonacci = (function (a) {
-  var b = 2 > a;
-  a: do {
-    if (b) {
-      var d = a
-    } else {
-      for (var c = 1, e = 0, f = 2;;) {
-        var k = e + c,
-          f = f + 1;
-        if (f > a) {
-          d = k;
-          break a
-        }
-        e = c;
-        c = k
-      }
-    }
-  } while (0);
-  return d
-});
-</pre>
   </div>
 
 </div>
@@ -339,6 +394,8 @@ Module._fibonacci = (function (a) {
 <script>impress().init();</script>
 <script type="text/javascript" src="js/prettify.js"></script>
 <script>prettyPrint();</script>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/js.js.talk.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <title>1+1 example</title>
+  <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript" src="js/libjs.O2.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        var jsObjs = JSJS.Init();
+
+        function nativeAdd(d1, d2) {
+            return d1 + d2;
+          }
+          var wrappedNativeFunc = JSJS.wrapFunction({
+            func: nativeAdd,
+            args: [JSJS.Types['double'], JSJS.Types['double']],
+            returns: JSJS.Types['double']});
+
+          JSJS.DefineFunction(jsObjs.cx, jsObjs.glob,
+                      "nativeAdd", wrappedNativeFunc, 2, 0);
+
+          var rval = JSJS.EvaluateScript(jsObjs.cx, jsObjs.glob,
+                             "nativeAdd(17, 2.4);");
+
+        var d = JSJS.ValueToNumber(jsObjs.cx, rval);
+        
+        document.write(d);
+    });
+  </script>
+</head>
+<body>
+</body>
+</html>
