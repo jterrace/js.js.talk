@@ -37,6 +37,9 @@
 .align-right, .table td.align-right, .table th.align-right {
 	text-align: right;
 }
+.align-center {
+	text-align: center;
+}
 
 .code {
 	font-family: monospace;
@@ -130,15 +133,21 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 100px;
+    margin-top: 40px;
+}
+.demo-link {
+	margin-top: 75px;
+	font-size: 28px;
+	line-height: 33px;
+	text-align: center;
 }
 .authors {
 	text-align: center;
-	margin-top: 150px;
+	margin-top: 95px;
 }
 .authors p {
-    font-size: 28px;
-    line-height: 33px;
+    font-size: 27px;
+    line-height: 32px;
 }
 
 
@@ -202,6 +211,12 @@ body {
 	line-height: 29px;
 }
 
+.slide code {
+    text-align: center;
+    font-size: 26px;
+    line-height: 30px;
+}
+
 
 
 
@@ -253,7 +268,7 @@ div.demo-contents {
 div.demo-contents iframe {
 	width: 100%;
     padding: 5px 5px 5px 5px;
-    height: 100px;
+    height: 120px;
 
     border-radius: 5px;
 
