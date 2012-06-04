@@ -1,8 +1,9 @@
 function toggleIframe(d) {
     var dParent = $(d).parent();
     var dContents = $(".demo-contents", dParent);
-    if (dContents.children().length > 0) {
-        dContents.empty();
+    var existingIframe = $('iframe', dContents);
+    dContents.empty();
+    if (existingIframe.length > 0) {
         $(d).text('Run Demo');
         return;
     }

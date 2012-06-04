@@ -298,6 +298,24 @@ Module._fibonacci = (function (a) {
   </div>
 
   <div class="step slide" data-x="9000">
+    <h1>Creating js.js</h1>
+    <ul>
+    <li>Required extensive patching to SpiderMonkey (300,000 lines of C++)</li>
+    <li>A few patches submitted to Emscripten</li>
+    <li>Resulting js.js library properties
+      <ul>
+        <li>Fine-grained access-control</li>
+        <li>Supports full, unmodified JavaScript language</li>
+        <li>Prevents unwanted DOM access, alerts, page redirection</li>
+        <li>Prevents spin loops, memory exhaustion</li>
+        <li>Has ability to suspend/resume scripts</li>
+      </ul>
+    </li>
+    
+    </ul>
+  </div>
+
+  <div class="step slide" data-x="10000">
     <h1>js.js Demo - 1+1</h1>
     <pre class="prettyprint lang-js">
 var jsObjs = JSJS.Init();
@@ -317,7 +335,7 @@ console.log(d);
     </div>
   </div>
 
-  <div class="step slide" data-x="10000">
+  <div class="step slide" data-x="11000">
     <h1>js.js Demo - communication</h1>
     <pre class="prettyprint lang-js">
 function nativeAdd(d1, d2) {
@@ -340,7 +358,7 @@ var rval = JSJS.EvaluateScript(jsObjs.cx, jsObjs.glob,
     </div>
   </div>
 
-  <div class="step slide" data-x="11000">
+  <div class="step slide" data-x="12000">
     <h1>js.js Demo - Fibonacci</h1>
     <pre class="prettyprint lang-js">
 function fibonacci(n) {
@@ -362,7 +380,7 @@ function fibonacci(n) {
     </div>
   </div>
 
-  <div class="step slide" data-x="12000">
+  <div class="step slide" data-x="13000">
     <h1>js.js Demo - Twitter Button</h1>
     <div class="align-center" style="margin-top: 40px; margin-bottom: 40px;">
       <code>http://platform.twitter.com/widgets.js</code>
@@ -373,7 +391,12 @@ function fibonacci(n) {
     </div>
   </div>
 
-  <div class="step slide" data-x="13000">
+  <div class="step slide" data-x="14000">
+    <h1>Sunspider Benchmark</h1>
+    <img class="solo-image" src="img/combined_times.png" />
+  </div>
+
+  <div class="step slide" data-x="15000">
     <h1>Microbenchmark</h1>
     <table style="margin-top: 50px; width: 600px;" class="table table-striped">
       <tbody>
@@ -417,12 +440,7 @@ function fibonacci(n) {
     </table>
   </div>
 
-  <div class="step slide" data-x="14000">
-    <h1>Sunspider Benchmark</h1>
-    <img class="solo-image" src="img/combined_times.png" />
-  </div>
-
-  <div class="step slide" data-x="15000">
+  <div class="step slide" data-x="16000">
     <h1>js.js</h1>
     <ul>
       <li>A secure sandbox for untrusted scripts
