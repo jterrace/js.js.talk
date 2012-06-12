@@ -210,6 +210,10 @@ body {
 	font-size: 25px;
 	line-height: 29px;
 }
+.slide pre.lang-llvm {
+	font-size: 22px;
+    line-height: 26px;
+}
 
 .slide code {
     text-align: center;

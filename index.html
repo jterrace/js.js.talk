@@ -228,72 +228,89 @@
   </div>
 
   <div class="step slide" data-x="6000">
-    <h1>Fibonacci C++</h1>
+    <h1>IsLeapYear C++</h1>
 <pre class="prettyprint lang-cpp">
-int fibonacci(unsigned int n) {
-  if (n==0 || n==1) {
-    return n;
-  }
-  
-  unsigned int prev2 = 0, prev1 = 1, fib = 1, i;
-  
-  for (i=2; i<=n; i++) {
-    fib = prev1 + prev2;
-    prev2 = prev1;
-    prev1 = fib;
-  }
-  
-  return fib;
+static inline bool
+IsLeapYear(jsint year)
+{
+    return year % 4 == 0 &&
+           (year % 100 || (year % 400 == 0));
 }
 </pre>
   </div>
   
   <div class="step slide" data-x="7000">
-    <h1>Fibonacci LLVM</h1>
+    <h1>IsLeapYear LLVM</h1>
 <pre class="prettyprint lang-llvm">
-define i32 @fibonacci(i32 %n) nounwind readnone {
-  %1 = icmp ult i32 %n, 2
-  br i1 %1, label %.loopexit, label %.lr.ph
- 
-.lr.ph:
-  %i.04 = phi i32 [ %3, %.lr.ph ], [ 2, %0 ]
-  %prev2.03 = phi i32 [ %fib.02, %.lr.ph ], [ 0, %0 ]
-  %fib.02 = phi i32 [ %2, %.lr.ph ], [ 1, %0 ]
-  %2 = add i32 %prev2.03, %fib.02
-  %3 = add i32 %i.04, 1
-  %4 = icmp ugt i32 %3, %n
-  br i1 %4, label %.loopexit, label %.lr.ph
- 
-.loopexit:
-  %.0 = phi i32 [ %n, %0 ], [ %2, %.lr.ph ]
-  ret i32 %.0
+define internal fastcc zeroext i1 @_ZL10IsLeapYeari(i32 %year) nounwind readnone inlinehint {
+entry:
+  %rem3 = and i32 %year, 3, !dbg !804097
+  %cmp = icmp eq i32 %rem3, 0, !dbg !804097
+  br i1 %cmp, label %land.rhs, label %land.end, !dbg !804097
+land.rhs:
+  %rem1 = srem i32 %year, 100, !dbg !804097
+  %tobool = icmp eq i32 %rem1, 0, !dbg !804097
+  br i1 %tobool, label %lor.rhs, label %land.end, !dbg !804097
+lor.rhs:
+  %rem2 = srem i32 %year, 400, !dbg !804097
+  %cmp3 = icmp eq i32 %rem2, 0, !dbg !804097
+  br label %land.end, !dbg !804097
+land.end:
+  %0 = phi i1 [ false, %entry ], [ true, %land.rhs ],
+              [ %cmp3, %lor.rhs ]
+  ret i1 %0, !dbg !804099
 }
 </pre>
   </div>
   
   <div class="step slide" data-x="8000">
-    <h1>Fibonacci JavaScript</h1>
+    <h1>IsLeapYear JavaScript</h1>
 <pre class="prettyprint lang-js">
-Module._fibonacci = (function (a) {
-  var b = 2 > a;
-  a: do {
-    if (b) {
-      var d = a
-    } else {
-      for (var c = 1, e = 0, f = 2;;) {
-        var k = e + c,
-          f = f + 1;
-        if (f > a) {
-          d = k;
-          break a
-        }
-        e = c;
-        c = k
+function __ZL10IsLeapYeari($year) {
+  var $cmp = ($year & 3 | 0) == 0;
+  do {
+    if ($cmp) {
+      if (($year % 100 | 0) != 0) {
+        var $0 = 1;
+        break;
       }
+      var $0 = ($year % 400 | 0) == 0;
+    } else {
+      var $0 = 0;
     }
   } while (0);
-  return d
-});
+  var $0;
+  return $0;
+  return null;
+}
+</pre>
+  </div>
+
+  <div class="step slide overlapped" data-x="8000">
+    <h1>IsLeapYear JavaScript</h1>
+<pre class="prettyprint lang-js">
+function __ZL10IsLeapYeari(a) {
+  return 0 == (a & 3 | 0) ? 0 != (a % 100 | 0) ?
+              1 : 0 == (a % 400 | 0) : 0
+}
+</pre>
+  </div>
+
+  <div class="step slide overlapped" data-x="8000">
+    <h1>IsLeapYear JavaScript</h1>
+<pre class="prettyprint lang-js">
+function __ZL10IsLeapYeari(a) {
+  return 0 == (a & 3 | 0) ? 0 != (a % 100 | 0) ?
+              1 : 0 == (a % 400 | 0) : 0
+}
+</pre>
+<pre class="prettyprint lang-cpp">
+static inline bool
+IsLeapYear(jsint year)
+{
+    return year % 4 == 0 &&
+           (year % 100 || (year % 400 == 0));
+}
 </pre>
   </div>
 
@@ -384,6 +401,7 @@ function fibonacci(n) {
     <h1>js.js Demo - Twitter Button</h1>
     <div class="align-center" style="margin-top: 40px; margin-bottom: 40px;">
       <code>http://platform.twitter.com/widgets.js</code>
+      <p style="font-size: 26px; margin-top: 20px;">47KB of complicated, closure-compiled JavaScript.</p>
     </div>
     <div class="demo-container">
       <button onclick="toggleIframe(this);">Run Demo</button>
