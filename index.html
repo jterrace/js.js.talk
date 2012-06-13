@@ -162,6 +162,22 @@
   </div>
 
   <div class="step slide" data-x="2000">
+    <h1>Goals</h1>
+    <ol>
+      <li>Fine-grained access control</li>
+      <li>Full JavaScript support
+        <ul><li>Including <span class="code">eval</span> and <span class="code">with</span>.</li></ul>
+      </li>
+      <li>Browser Compatibility
+        <ul><li>All major browsers without plugins or modifications</li></ul>
+      </li>
+      <li>Resilient to attacks
+        <ul><li>Spin loops, memory exhaustion, page redirection, DOM modifications</li></ul>
+      </li>
+    </ol>
+  </div>
+
+  <div class="step slide" data-x="3000">
     <h1>Existing Solutions</h1>
     <ul>
       <li>iframes
@@ -187,22 +203,6 @@
         </ul>
       </li>
     </ul>
-  </div>
-  
-  <div class="step slide" data-x="3000">
-    <h1>Goals</h1>
-    <ol>
-      <li>Fine-grained access control</li>
-      <li>Full JavaScript support
-        <ul><li>Including <span class="code">eval</span> and <span class="code">with</span>.</li></ul>
-      </li>
-      <li>Browser Compatibility
-        <ul><li>All major browsers without plugins or modifications</li></ul>
-      </li>
-      <li>Resilient to attacks
-        <ul><li>Spin loops, memory exhaustion, page redirection, DOM modifications</li></ul>
-      </li>
-    </ol>
   </div>
   
   <div class="step slide" data-x="4000">
@@ -319,15 +319,7 @@ IsLeapYear(jsint year)
     <ul>
     <li>Required extensive patching to SpiderMonkey (300,000 lines of C++)</li>
     <li>A few patches submitted to Emscripten</li>
-    <li>Resulting js.js library properties
-      <ul>
-        <li>Fine-grained access-control</li>
-        <li>Supports full, unmodified JavaScript language</li>
-        <li>Prevents unwanted DOM access, alerts, page redirection</li>
-        <li>Prevents spin loops, memory exhaustion</li>
-        <li>Has ability to suspend/resume scripts</li>
-      </ul>
-    </li>
+    <li>Resulting js.js library has all the functionality of SpiderMonkey</li>
     
     </ul>
   </div>
